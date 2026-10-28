@@ -78,7 +78,7 @@ function initChat(username: string) {
   function renderMessages(messages: any[]) {
     render(html`
       <div class="chat-bubble chat-bubble-assistant">
-        👋 Welcome to the Hope Valley AI Assistant. Ask me about doctors, hospital guidelines, ER wait times, or ask me to book/cancel an appointment for you!
+        👋 Welcome to the Taita Taveta University Health Unit AI Assistant. Ask me about doctors, health unit guidelines, ER wait times, or ask me to book/cancel an appointment for you!
       </div>
       ${messages.map(msg => html`
         <div class="chat-bubble chat-bubble-${msg.role}">
@@ -278,7 +278,7 @@ document.getElementById('app')!.appendChild(
       render(html`
         <!-- Announcement Banner -->
         <div class="welcome-section">
-          <div class="welcome-title">🏥 Hope Valley Care Portal</div>
+          <div class="welcome-title">🏥 Taita Taveta University Health Unit</div>
           <div class="welcome-subtitle">${settings.announcement || 'Connecting you to your clinical care team.'}</div>
         </div>
 
@@ -303,7 +303,7 @@ document.getElementById('app')!.appendChild(
             </div>
             <div>
               <div style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 500;">VISITING HOURS</div>
-              <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-color);">${settings.visitingHours || '9am - 8pm'}</div>
+              <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-color);">${settings.visitingHours || '24 Hours, 7 Days a Week'}</div>
             </div>
           </div>
           <div class="card" style="padding: 16px; display: flex; align-items: center; gap: 16px;">

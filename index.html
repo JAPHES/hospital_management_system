@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hope Valley - Hospital Management Portal</title>
+  <title>Taita Taveta University Health Unit - Management Portal</title>
+  <link rel="icon" type="image/jpeg" href="/ttu-logo.jpg" />
   <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -69,10 +70,18 @@
       color: var(--accent-color);
     }
 
-    .brand svg {
-      width: 28px;
-      height: 28px;
-      fill: currentColor;
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.15), var(--shadow-sm);
+    }
+
+    .brand-name-short {
+      display: none;
     }
 
     #menu-bar {
@@ -547,6 +556,30 @@
       background-color: #f1f5f9;
       color: var(--text-primary);
     }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 8px 12px;
+      }
+
+      .brand {
+        gap: 8px;
+        font-size: 0.95rem;
+      }
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+      }
+
+      .brand-name-full {
+        display: none;
+      }
+
+      .brand-name-short {
+        display: inline;
+      }
+    }
   </style>
 </head>
 <body>
@@ -565,17 +598,16 @@
 
   <header>
     <div class="brand">
-      <svg viewBox="0 0 24 24">
-        <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
-      </svg>
-      <span>Hope Valley Portal</span>
+      <img class="brand-logo" src="/ttu-logo.jpg" alt="Taita Taveta University logo" />
+      <span class="brand-name-full">Taita Taveta University Health Unit Portal</span>
+      <span class="brand-name-short">TTU Health Unit</span>
     </div>
     <div id="menu-bar"></div>
   </header>
 
   <main>
     <div id="signInMessage">
-      <h2>Welcome to Hope Valley</h2>
+      <h2>Welcome to Taita Taveta University Health Unit</h2>
       <p>Your secure hospital management and care portal. Sign in to access your appointments, diagnostic records, and settings.</p>
     </div>
     <div id="auth"></div>
