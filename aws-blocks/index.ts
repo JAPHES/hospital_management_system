@@ -24,6 +24,11 @@ const auth = new AuthCognito(scope, 'auth', {
   passwordPolicy: { minLength: 8 },
   userAttributes: [{ name: 'role', type: 'String' }] as const,
   crossDomain: process.env.BLOCKS_SANDBOX === 'true',
+  // The local Cognito mock cannot send email. Surface its verification codes
+  // in the dev-server terminal; deployed AWS environments use Cognito email.
+  codeDelivery: async (username, code, purpose) => {
+    console.log(`\n[AUTH] ${purpose} code for ${username}: ${code}\n`);
+  },
 });
 export const authApi = auth.createApi(); //signup,signin,confirmSignUp,confirmSignIn,getAuthState,currentUser
 
@@ -43,10 +48,10 @@ async function getSettingsOrDefault() {
   const data = await settings.get('hospital_config');
   if (data) return data;
   const defaults = {
-    visitingHours: '9:00 AM - 8:00 PM',
+    visitingHours: '24 Hours, 7 Days a Week',
     erWaitTime: '15 minutes',
     bedCapacity: '95% available',
-    announcement: 'Welcome to Hope Valley Hospital. All visitor check-ins must be completed at the main reception desk.',
+    announcement: 'Welcome to Taita Taveta University Health Unit. All visitor check-ins must be completed at the main reception desk.',
   };
   await settings.put('hospital_config', defaults);
   return defaults;
@@ -100,7 +105,7 @@ const kb = new KnowledgeBase(scope, 'docs', {
 // ─── AI Chat Agent ───────────────────────────────────────────────────────────
 const agent = new Agent(scope, 'hospital-bot', {
   model: { deployed: BedrockModels.BALANCED },
-  systemPrompt: 'You are the reception desk chatbot for Hope Valley Hospital. You can help patients get information about hospital hours, check ER wait times, look up their appointments, list available doctors, or book appointments. Always be polite, empathetic, and professional. Always use the searchKnowledgeBase tool to retrieve medical policies, pediatric guidelines, cardiology information, or diabetes questions before answering.',
+  systemPrompt: 'You are the reception desk chatbot for Taita Taveta University Health Unit. You can help patients get information about health unit hours, check ER wait times, look up their appointments, list available doctors, or book appointments. Always be polite, empathetic, and professional. Always use the searchKnowledgeBase tool to retrieve medical policies, pediatric guidelines, cardiology information, or diabetes questions before answering.',
   toolContextSchema: z.object({
     username: z.string(),
     name: z.string().optional(),

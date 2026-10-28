@@ -62,7 +62,7 @@ test.after(() => {
 
 // Helper to get confirmation code in Cognito mock
 function getConfirmationCode() {
-  const codePath = path.join(process.cwd(), '.bb-data', 'hospital-system-auth', 'last-code.json');
+  const codePath = path.join(process.cwd(), '.bb-data', 'hosp-auth', 'last-code.json');
   const data = JSON.parse(fs.readFileSync(codePath, 'utf8'));
   return data.code;
 }
