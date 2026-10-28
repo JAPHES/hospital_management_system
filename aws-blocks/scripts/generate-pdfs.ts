@@ -37,10 +37,10 @@ function createPdf(filename: string, title: string, content: { section: string; 
 // Generate the PDFs
 console.log('Generating medical guides in PDF format...');
 
-createPdf('hospital_policies.pdf', 'Hope Valley Hospital - General Policies & Visitor Guide', [
+createPdf('hospital_policies.pdf', 'Taita Taveta University Health Unit - General Policies & Visitor Guide', [
   {
     section: 'Visiting Hours',
-    text: 'General visiting hours are daily from 9:00 AM to 8:00 PM. Intensive Care Unit (ICU) visiting hours are restricted to 11:00 AM - 12:00 PM and 5:00 PM - 6:00 PM. No more than two visitors are allowed per patient at one time to ensure quiet recovery.',
+    text: 'The Taita Taveta University Health Unit is open to patients and visitors 24 hours a day, 7 days a week. No more than two visitors are allowed per patient at one time to ensure quiet recovery.',
   },
   {
     section: 'Emergency Services',
@@ -52,7 +52,7 @@ createPdf('hospital_policies.pdf', 'Hope Valley Hospital - General Policies & Vi
   },
   {
     section: 'Code of Conduct',
-    text: 'Hope Valley Hospital is committed to providing a safe, clean, and respectful environment. Violence, abusive language, or disruptive behavior towards staff or other patients will result in immediate removal by security and potential legal actions.',
+    text: 'Taita Taveta University Health Unit is committed to providing a safe, clean, and respectful environment. Violence, abusive language, or disruptive behavior towards staff or other patients will result in immediate removal by security and potential legal actions.',
   },
 ]);
 
