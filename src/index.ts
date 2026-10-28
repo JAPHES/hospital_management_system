@@ -7,6 +7,7 @@ import { api, authApi } from 'aws-blocks';
 import { AccountMenuBar, AuthenticatedContent, onAuthChange } from '@aws-blocks/blocks/ui';
 import { html, render } from 'lit-html';
 import { useChat } from '@aws-blocks/bb-agent/client';
+import { formatAssistantMessage } from './chat-format';
 
 // ─── Auth state coordination ──────────────────────────────────────────────────
 const menuBarEl = document.getElementById('menu-bar')!;
@@ -80,11 +81,16 @@ function initChat(username: string) {
       <div class="chat-bubble chat-bubble-assistant">
         👋 Welcome to the Taita Taveta University Health Unit AI Assistant. Ask me about doctors, health unit guidelines, ER wait times, or ask me to book/cancel an appointment for you!
       </div>
-      ${messages.map(msg => html`
-        <div class="chat-bubble chat-bubble-${msg.role}">
-          ${msg.content.split('\n').map((para: string) => html`<p style="margin-bottom: 6px;">${para}</p>`)}
-        </div>
-      `)}
+      ${messages.map(msg => {
+        const content = msg.role === 'assistant'
+          ? formatAssistantMessage(msg.content)
+          : msg.content;
+        return html`
+          <div class="chat-bubble chat-bubble-${msg.role}">
+            ${content.split('\n').map((para: string) => html`<p style="margin-bottom: 6px;">${para}</p>`)}
+          </div>
+        `;
+      })}
       ${chatInstance?.isLoading() ? html`
         <div class="chat-bubble chat-bubble-assistant" style="opacity: 0.6; display: flex; align-items: center; gap: 8px;">
           <span style="font-style: italic;">Assistant is typing...</span>

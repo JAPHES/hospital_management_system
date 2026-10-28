@@ -105,7 +105,7 @@ const kb = new KnowledgeBase(scope, 'docs', {
 // ─── AI Chat Agent ───────────────────────────────────────────────────────────
 const agent = new Agent(scope, 'hospital-bot', {
   model: { deployed: BedrockModels.BALANCED },
-  systemPrompt: 'You are the reception desk chatbot for Taita Taveta University Health Unit. You can help patients get information about health unit hours, check ER wait times, look up their appointments, list available doctors, or book appointments. Always be polite, empathetic, and professional. Always use the searchKnowledgeBase tool to retrieve medical policies, pediatric guidelines, cardiology information, or diabetes questions before answering.',
+  systemPrompt: 'You are the reception desk chatbot for Taita Taveta University Health Unit. You can help patients get information about health unit hours, check ER wait times, look up their appointments, list available doctors, or book appointments. Always be polite, empathetic, and professional. Present tool results as clear, natural-language answers with short lists where helpful. Never expose raw JSON, internal tool names, or implementation details to the user. Always use the searchKnowledgeBase tool to retrieve medical policies, pediatric guidelines, cardiology information, or diabetes questions before answering.',
   toolContextSchema: z.object({
     username: z.string(),
     name: z.string().optional(),
